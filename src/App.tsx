@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Pokemon } from 'pokenode-ts'
 import './App.css'
 import axios from 'axios'
 
@@ -30,6 +31,7 @@ function App() {
       ) : (
         <div id="pokemon-result">
           <img src={pokemonInfo.sprites.other.dream_world.front_default} />
+          Pokemon Name: {pokemonName}
         </div>
       )}
     </div>
@@ -38,6 +40,7 @@ function App() {
   function search() {
     axios.get(POKEMON_BASE_URL + '/pokemon/' + pokemonName).then((res) => {
       setPokemonInfo(res.data)
+      console.log(res.data)
     })
   }
 }
