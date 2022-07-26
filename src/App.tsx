@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import './App.css'
+import axios from 'axios'
 
 function App() {
   const [pokemonName, setPokemonName] = useState('')
+
+  const POKEMON_BASE_URL = 'https://pokeapi.co/api/v2'
   return (
     <div>
       <h1> Pokemon Search </h1>
@@ -20,11 +23,15 @@ function App() {
       </div>
 
       <p>You have entered {pokemonName}</p>
+
+      <div id="pokemon-result">This will show the result</div>
     </div>
   )
 
   function search() {
-    alert('Search button has been clicked!')
+    axios.get(POKEMON_BASE_URL + '/pokemon/' + pokemonName).then((res) => {
+      console.log(res.data)
+    })
   }
 }
 
